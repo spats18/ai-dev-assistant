@@ -19,7 +19,7 @@ io.on('connection', (socket) => {
 
         // config for the HTTP request to Ollama
         const options = {
-            hostname: 'localhost',
+            hostname: '127.0.0.1',
             port: 11434,           // Ollama's default port
             path: '/api/generate', // Ollama's text generation endpoint
             method: 'POST',
@@ -37,7 +37,7 @@ io.on('connection', (socket) => {
         });
 
         // send the prompt; stream:true tells Ollama to send tokens as generated rather than waiting for the full response
-        req.write(JSON.stringify({ model: 'qwen2.5-coder:7b', prompt: userMessage, stream: true }));
+        req.write(JSON.stringify({ model: 'qwen2.5-coder:1.5b', prompt: userMessage, stream: true }));
         req.end(); // signals we're done writing the request body — Ollama starts processing
 
         // catches network-level errors e.g. Ollama not running

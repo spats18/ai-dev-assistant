@@ -1,3 +1,12 @@
+# macOS
+.DS_Store
+
+# Editor
+.vscode/
+
+# Test files
+test.html
+
 # Logs
 logs
 *.log
@@ -137,5 +146,3 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
-
-understanding.md
