@@ -5,10 +5,10 @@ A personal AI coding assistant with a React frontend, Node.js backend, and a loc
 ## Screenshots
 
 **Chat UI — connected and ready**
-![Chat UI connected](docs/screenshots/chat-connected.png)
+![Chat UI connected](docs/screenshots/chat-connected_cropped.png)
 
 **Error state — backend not running**
-![Backend disconnected](docs/screenshots/chat-disconnected.png)
+![Backend disconnected](docs/screenshots/chat-disconnected_cropped.png)
 
 ## Stack
 
