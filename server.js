@@ -37,7 +37,7 @@ io.on('connection', (socket) => {
         });
 
         // send the prompt; stream:true tells Ollama to send tokens as generated rather than waiting for the full response
-        req.write(JSON.stringify({ model: 'qwen2.5-coder:1.5b', prompt: userMessage, stream: true }));
+        req.write(JSON.stringify({ model: 'qwen2.5-coder:7b', prompt: userMessage, stream: true }));
         req.end(); // signals we're done writing the request body — Ollama starts processing
 
         // catches network-level errors e.g. Ollama not running
