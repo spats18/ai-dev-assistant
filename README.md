@@ -65,10 +65,13 @@ Frontend runs on `http://localhost:5173`
 ## Screenshots
 
 **Chat UI — connected and ready**
+
 ![Chat UI connected](docs/screenshots/chat-connected_cropped.png)
 
 **Chatting with the assistant**
+
 ![Request and response](docs/screenshots/Request%20and%20Response.png)
 
 **Error state — backend not running**
+
 ![Backend disconnected](docs/screenshots/chat-disconnected_cropped.png)
