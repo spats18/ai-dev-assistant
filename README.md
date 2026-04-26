@@ -2,6 +2,14 @@
 
 A personal AI coding assistant with a React frontend, Node.js backend, and a locally hosted LLM via Ollama. No cloud costs, no API keys — runs entirely on your machine.
 
+## Screenshots
+
+**Chat UI — connected and ready**
+![Chat UI connected](docs/screenshots/chat-connected.png)
+
+**Error state — backend not running**
+![Backend disconnected](docs/screenshots/chat-disconnected.png)
+
 ## Stack
 
 - **Frontend:** React (Vite)
