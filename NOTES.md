@@ -62,3 +62,41 @@ The frontend will receive these events in real time and append each token to the
 
 **Why `http.request()` and not `fetch`?**
 Node's built-in `http.request()` gives direct access to the raw response stream via the `data` event. `fetch` buffers the response internally, making streaming harder to handle. For raw streaming, `http.request()` is the right tool.
+
+
+## How the React Frontend Works
+
+The frontend is a single React component (`App.jsx`) built with Vite. It connects to the backend over a persistent WebSocket using socket.io-client.
+
+**State:**
+- `messages` — array of `{ role, text, streaming }` objects rendered as chat bubbles
+- `isStreaming` — true while Ollama is generating; disables input and changes button to "Thinking..."
+- `input` — controlled input field value
+
+**Socket events:**
+- Emits `message` with the user's prompt when Send is clicked
+- Listens for `token` — appends each token to the last message in state
+- Listens for `done` — sets `isStreaming` to false and removes the blinking cursor
+- Listens for `error` — shows the error as an assistant message
+
+**Why update the last message instead of adding a new one per token?**
+Each token arrives as a separate socket event. If we pushed a new message for each token, the UI would render hundreds of bubbles. Instead, we keep one assistant message in state and mutate its `text` field as tokens arrive — giving the smooth "typing" effect.
+
+**The blinking cursor** is a CSS `::after` pseudo-element on `.message.assistant.streaming` — no JS needed, just a CSS animation that disappears when `streaming: false`.
+
+
+## Connection Error Handling
+
+The frontend tracks connection state in a `connectionStatus` variable: `'connecting'`, `'connected'`, or `'disconnected'`.
+
+socket.io fires these events automatically:
+- `connect` — WebSocket successfully established
+- `disconnect` — connection dropped
+- `connect_error` — failed to reach the server (e.g. backend not running)
+
+`reconnectionAttempts: 3` tells socket.io to retry 3 times before giving up and firing `connect_error`.
+
+When disconnected:
+- A red banner appears explaining the backend isn't reachable and what to run
+- The input and Send button are disabled so the user can't send messages into the void
+- A coloured dot in the header shows live status (green = connected, amber = connecting, red = disconnected)

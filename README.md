@@ -47,7 +47,7 @@ node server.js
 
 Backend runs on `http://localhost:3001`
 
-### 4. Start the frontend *(coming soon)*
+### 4. Start the frontend
 ```bash
 cd frontend
 npm install
@@ -59,4 +59,5 @@ Frontend runs on `http://localhost:5173`
 ## Project Status
 
 - [x] Phase 1 — Backend: Ollama streaming over WebSocket
-- [ ] Phase 1 — Frontend: React chat UI
+- [x] Phase 1 — Frontend: React chat UI with real-time streaming
+- [x] Phase 1 — Frontend: Connection error handling (banner + status indicator)
