@@ -31,8 +31,14 @@ io.on('connection', (socket) => {
             // 'data' fires each time a new chunk arrives from Ollama
             res.on('data', (chunk) => {
                 const parsed = JSON.parse(chunk.toString()); // each chunk is one JSON object e.g. { response: "Hello", done: false }
-                if (parsed.response) socket.emit('token', parsed.response); // forward the token to the frontend in real time
-                if (parsed.done) socket.emit('done'); // tell the frontend the full response is complete
+                if (parsed.response) {
+                    process.stdout.write(parsed.response + '|'); // print token with | separator
+                    socket.emit('token', parsed.response); // forward the token to the frontend in real time
+                }
+                if (parsed.done) {
+                    process.stdout.write('\n'); // newline after response completes
+                    socket.emit('done'); // tell the frontend the full response is complete
+                }
             });
         });
 
